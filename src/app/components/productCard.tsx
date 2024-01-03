@@ -2,18 +2,31 @@ import React from "react";
 import { IProduct } from "../products/productInterface";
 import ProductButton from "./productButton";
 
-const ProductCard: React.FC<IProduct> = (product: IProduct) => {
+interface Iprops {
+    product: IProduct
+}
 
+const ProductCard: React.FC<Iprops> = (props: Iprops) => {
     return (
-        <div style={{ border: '1px solid white', margin: '20px', padding: '20px' }} >
-            <h4>{product.title}</h4>
-            <h4>{product.brand}</h4>
-            <h4>{product.description}</h4>
-            <h4>{product.price}</h4>
-            <ProductButton id={product.id}/>
+        <div className="rounded border-white justify-center my-5">
+            <div className="space-y-2">
+                <div className="grid grid-cols-2 justify-start" >
+                    <div>
+                        <h5> ProductName: </h5>
+                    </div>
+                    <div>
+                        <h4 >{props.product.title}</h4>
+                    </div>
+                    <div><h5>Description: </h5> </div>  <div className="grow overflow-auto"> <h4>{props.product.description}</h4></div>
+                    <div>
+                        <h5>Price: </h5></div> <div className="grow overflow-auto"><h4>{props.product.price}</h4></div>                   
+                </div>               
+            </div>
+            <div className="flex justify-center px-1">
+                        <ProductButton id={props.product.id} />
+        </div>
         </div>
     );
-
 }
 
 export default ProductCard;

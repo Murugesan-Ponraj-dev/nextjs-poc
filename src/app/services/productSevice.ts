@@ -1,12 +1,12 @@
 import {Get, Post} from "./fetchService";
 import * as ApiEndpoint from "../Constants/apiEndPoints";
-import { IProduct } from "../products/productInterface";
+import { IProduct, IProductResponse,IProductsResponse } from "../products/productInterface";
 
 
 class ProductDataService 
 {
     getAll =()=>{
-        return Get<Array<IProduct>>(ApiEndpoint.GET_ALLPRODUCTS);
+       return Get<IProductsResponse>(ApiEndpoint.GET_ALLPRODUCTS);     
     }
 
     getProduct =(id:number)=>{
@@ -16,5 +16,8 @@ class ProductDataService
     create = (data:IProduct)=>{
         return Post<IProduct>(ApiEndpoint.ADD_PRODUCT, data);
     }
+     getProducts=()=> {
+        return this.getAll().then(res => { return res.products; });
+    }    
 }
 export default new ProductDataService;

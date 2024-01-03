@@ -1,5 +1,4 @@
 'use client'
-import { useRouter } from "next/navigation";
 import React,{FC} from 'react';
 import Link from "next/link";
 
@@ -8,14 +7,9 @@ interface numberProps {
   }
   
  const ProductButton: FC<numberProps> = (props: numberProps) =>{
-   // const router = useRouter();
-   const href = `products/${props.id}`;
-  //   const handleClick=()=>{
-  //  router.push(`products/${props.id}`)
-  //   }
+   const href = `products/${props.id}`; 
     return(
-      <Link href= {href} className="hover:text-gray-300">View Product</Link>
-//<button onClick={handleClick} value ="Go To Product"/>
+      <Link href= {href} className="hover:text-gray-300 focus:outline-none text-white bg-green-700 hover:bg-green-800 ">View Product</Link>
 );
 }
 export default ProductButton;

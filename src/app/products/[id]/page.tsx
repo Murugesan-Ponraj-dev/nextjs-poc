@@ -4,9 +4,9 @@ import productSevice from "@/app/services/productSevice";
 import ProductDetailCard from "@/app/components/productDetailCard";
 
 export async function generateStaticParams(){
-const products = await productSevice.getAll();
+const products = await (await productSevice.getAll()).products
 return products.map((Product)=>({
-id: Product.id
+id: Product.id.toString()
 }))
 }
 
@@ -16,7 +16,7 @@ return product;
 }
 
 export default async function Product({ params }: { params: { id: number } }) {
-    const product = await getProduct(params.id);
+    const product = (await getProduct(params.id))
     return <ProductDetailCard {...product} />
   }
   

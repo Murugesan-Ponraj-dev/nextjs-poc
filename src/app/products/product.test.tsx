@@ -6,39 +6,37 @@ import { IProduct } from './productInterface';
 import productSevice from '../services/productSevice';
 import ProductCard from '../components/productCard';
 import ProductDetailCard from '../components/productDetailCard';
-import { useRouter } from 'next/navigation';
+import ProductList from '../components/productList';
 
 
 beforeAll(() => {
-  jest.mock('../services/productSevice', () => ({ create: jest.fn() }));
+  jest.mock('../services/productSevice', () => ({ getAll: jest.fn() }));
 
 });
 
 beforeEach(() => {
   productSevice.getAll = jest.fn().mockImplementation(
-    () => Promise.resolve({ data: mockProducts, status: 200 }));
+    () => Promise.resolve(mockProducts));
 })
+
+describe('product fetch service',()=>{
+  it('catch fetch server error',  () => {  
+    productSevice.getAll().catch(error => expect(error).toMatch('error'));
+});
+
+})
+
 describe('View Product Page', () => {
-  jest.mock('next/router', () => ({
-    useRouter: jest.fn()
-  }))
-  it('render product list page', () => {
-    productSevice.getAll = jest.fn().mockImplementation(
-      () => Promise.resolve({ data: mockProducts, status: 200 }));
-    render(<ViewProductsPage />)
+
+  it('render product list page', async () => {  
+      render(<ProductList products={mockProducts.products} />)
     const headings = screen.getByText("View Products");
     expect(headings).toBeInTheDocument();
   });
 
-  it.each([mockProducts])('add user and verify the added user in gird view', (mockData: IProduct) => {
-    productSevice.getAll = jest.fn().mockImplementation(
-      () => Promise.resolve({ data: mockProducts, status: 200 }));
-    jest.mock('next/router', () => ({
-      useRouter: jest.fn()
-    }))
-    render(<ViewProductsPage />)
-    // set fake data on get all api response
-
+  it.each([mockProducts.products])('verify the added user in gird view', async (mockData: IProduct) => { 
+      
+    render(<ProductList products={mockProducts.products} />)
     const productTitle = screen.getByText(mockData.title);
     const productPrice = screen.getByText(mockData.price);
     expect(productTitle).toBeInTheDocument();
@@ -46,24 +44,13 @@ describe('View Product Page', () => {
   });
 
   it('render product card component', () => {
-    render(<ProductCard {...mockProduct} />)
+    render(<ProductCard product={mockProduct} />)
     const productTitle = screen.getByText(mockProduct.title);
     expect(productTitle).toBeInTheDocument();
   });
 
   it('click and verify product card component', () => {
-
-    // setup a new mocking function for push method
-    jest.mock('next/router', () => ({
-      useRouter: jest.fn()
-    }))
-
-    // setup a new mocking function for push method
-    const pushMock = jest.fn()
-
-    // mock a return value on useRouter
-
-    render(<ProductCard {...mockProduct} />)
+    render(<ProductCard product={mockProduct} />)
     const button = screen.getByText("View Product");
     fireEvent.click(button);
     var url = `/products/${mockProduct.id}`;

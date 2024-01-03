@@ -1,21 +1,21 @@
 import 'server-only'
 import productSevice from "../services/productSevice";
-import Product from "../components/productCard";
+import ProductCard from "../components/productCard";
+import React, { FC } from 'react';
 import { IProduct } from './productInterface';
+import ProductList from '../components/productList';
+
 async function getProducts() {
-    const products = productSevice.getAll();
-    return products;
+    const products = await productSevice.getAll();
+    return products.products;
 }
 
-export default async function Products() {
-    const productData:Promise<IProduct[]> =  getProducts();
-    const products = await productData;
-        return (<>
-        <h1>View Products</h1>
-        {
-            products.length > 0 && products.map((product) => {
-                <Product key={product.id} {...product} />
-            })
-        }
-    </>)
+const ViewProducts: React.FC = async () => {
+    const products: Array<IProduct> = await getProducts();
+    return (
+        <>
+            <ProductList products={products} />
+        </>
+    )
 }
+export default ViewProducts;

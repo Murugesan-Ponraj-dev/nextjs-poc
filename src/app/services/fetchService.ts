@@ -2,6 +2,7 @@ import { BASE_URL } from '../Constants/apiEndPoints'
 
 export  async function Get<T>(url: string): Promise<T> {
   let apiUrl = BASE_URL+url;
+  console.log(apiUrl);
   const response = await fetch(apiUrl);
   if (!response.ok) {
     throw new Error(response.statusText);
