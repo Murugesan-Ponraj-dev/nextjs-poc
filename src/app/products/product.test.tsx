@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react';
-import ViewProductsPage from './page'
 import { mockProducts, mockProduct } from './productMockData';
 import { IProduct } from './productInterface';
 import productSevice from '../services/productSevice';
@@ -27,7 +26,6 @@ describe('product fetch service',()=>{
 })
 
 describe('View Product Page', () => {
-
   it('render product list page', async () => {  
       render(<ProductList products={mockProducts.products} />)
     const headings = screen.getByText("View Products");

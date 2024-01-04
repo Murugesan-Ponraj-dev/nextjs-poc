@@ -1,6 +1,6 @@
 import {Get, Post} from "./fetchService";
 import * as ApiEndpoint from "../Constants/apiEndPoints";
-import { IProduct, IProductResponse,IProductsResponse } from "../products/productInterface";
+import { IProduct,IProductsResponse } from "../products/productInterface";
 
 
 class ProductDataService 

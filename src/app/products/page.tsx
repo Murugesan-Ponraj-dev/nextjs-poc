@@ -1,7 +1,6 @@
 import 'server-only'
 import productSevice from "../services/productSevice";
-import ProductCard from "../components/productCard";
-import React, { FC } from 'react';
+import React from 'react';
 import { IProduct } from './productInterface';
 import ProductList from '../components/productList';
 
