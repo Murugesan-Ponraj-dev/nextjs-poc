@@ -27,23 +27,23 @@ describe('product fetch service',()=>{
 
 describe('View Product Page', () => {
   it('render product list page', async () => {  
-      render(<ProductList products={mockProducts.products} />)
+      render(<ProductList products={mockProducts} />)
     const headings = screen.getByText("View Products");
     expect(headings).toBeInTheDocument();
   });
 
-  it.each([mockProducts.products])('verify the added user in gird view', async (mockData: IProduct) => { 
+  it.each([mockProducts])('verify the added user in gird view', async (mockData: IProduct) => { 
       
-    render(<ProductList products={mockProducts.products} />)
-    const productTitle = screen.getByText(mockData.title);
-    const productPrice = screen.getByText(mockData.price);
+    render(<ProductList products={mockProducts} />)
+    const productTitle = screen.getByText(mockData.title as string);
+    const productPrice = screen.getByText(mockData.price as number);
     expect(productTitle).toBeInTheDocument();
     expect(productPrice).toBeInTheDocument();
   });
 
   it('render product card component', () => {
     render(<ProductCard product={mockProduct} />)
-    const productTitle = screen.getByText(mockProduct.title);
+    const productTitle = screen.getByText(mockProduct.title as string);
     expect(productTitle).toBeInTheDocument();
   });
 
@@ -51,14 +51,12 @@ describe('View Product Page', () => {
     render(<ProductCard product={mockProduct} />)
     const button = screen.getByText("View Product");
     fireEvent.click(button);
-    var url = `/products/${mockProduct.id}`;
-    // verify expected url
-    //expect(global.window.location.href).toContain(url);
+    var url = `/products/${mockProduct.id}`; 
   });
 
   it('verify product detail component', () => {
     render(<ProductDetailCard {...mockProduct} />)
-    const productTitle = screen.getByText(mockProduct.title);
+    const productTitle = screen.getByText(mockProduct.title as string);
     expect(productTitle).toBeInTheDocument();
   });
 

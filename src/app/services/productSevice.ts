@@ -6,7 +6,7 @@ import { IProduct,IProductsResponse } from "../products/productInterface";
 class ProductDataService 
 {
     getAll =()=>{
-       return Get<IProductsResponse>(ApiEndpoint.GET_ALLPRODUCTS);     
+       return Get<Array<IProduct>>(ApiEndpoint.GET_ALLPRODUCTS);     
     }
 
     getProduct =(id:number)=>{
@@ -17,7 +17,7 @@ class ProductDataService
         return Post<IProduct>(ApiEndpoint.ADD_PRODUCT, data);
     }
      getProducts=()=> {
-        return this.getAll().then(res => { return res.products; });
+        return this.getAll().then(res => { return res; });
     }    
 }
 export default new ProductDataService;

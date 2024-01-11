@@ -8,12 +8,14 @@ export default function Header() {
           <h1 className="text-xl font-semibold">Next Js POC</h1>
           {/* Navigation menu */}
           <nav className="hidden md:block">
-            <ul className="flex gap-x-3">
+            <ul className="flex gap-x-3 ">
               {/* Navigation links */}
               <li>
               <Link href="/products"  className="hover:text-gray-300">                
                   View Products
-                </Link>
+                </Link> 
+              </li>
+              <li> 
                 <Link href="/product"  className="hover:text-gray-300">                
                   Add Product
                 </Link>
