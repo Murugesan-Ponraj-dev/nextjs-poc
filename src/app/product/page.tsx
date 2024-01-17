@@ -1,17 +1,21 @@
-"use client"
+'use client'
 import React from "react";
-import ProductForm from '../components/productForm'; 
+import ProductForm from '../components/productForm';
 import { IProduct } from "../products/productInterface";
 import productSevice from "../services/productSevice";
- 
+import { useRouter } from 'next/navigation'
 
-  function CreateProductItem(product:IProduct) {   
-    productSevice.create(product); 
-    window.history.pushState({}, "", "/products")
- }
- 
 export default async function AddProduct() {
-    return <ProductForm  CreateItem={CreateProductItem} />
+  const router = useRouter()
+  function CreateProductItem(product: IProduct) {
+    productSevice.create(product);
+    router.push('/products')
   }
-  
+  return (
+
+    <ProductForm CreateItem={CreateProductItem} />
+
+  )
+}
+
 

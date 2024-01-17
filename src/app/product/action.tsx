@@ -1,4 +1,4 @@
-'use-client'
+'user server'
 import productSevice from "../services/productSevice";  
 import { IProduct } from '../products/productInterface'; 
  

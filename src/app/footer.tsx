@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <>
+    <footer>
     <div className="relative"> 
       <div className="w-full h-20 bg-emerald-800 absolute top-0 buttom-0 z-20">
         <div className="container mx-auto px-4 h-full">
@@ -20,8 +20,8 @@ const Footer = () => {
         </div>
       </div>
       </div>
-    </>
+      </footer>
   );
 };
 
-export default Footer;
+ 

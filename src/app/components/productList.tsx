@@ -1,7 +1,7 @@
 import { IProduct } from "../products/productInterface";
 import ProductCard from "./productCard";
 
- interface IProps{
+interface IProps{
 products:IProduct[]
 }
 export default function ProductList(props:IProps){
