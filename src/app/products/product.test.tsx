@@ -7,7 +7,6 @@ import ProductCard from '../components/productCard';
 import ProductDetailCard from '../components/productDetailCard';
 import ProductList from '../components/productList';
 
-
 beforeAll(() => {
   jest.mock('../services/productSevice', () => ({ getAll: jest.fn() }));
 
@@ -18,22 +17,22 @@ beforeEach(() => {
     () => Promise.resolve(mockProducts));
 })
 
-describe('product fetch service',()=>{
-  it('catch fetch server error',  () => {  
+describe('product fetch service', () => {
+  it('catch fetch server error', () => {
     productSevice.getAll().catch(error => expect(error).toMatch('error'));
-});
+  });
 
 })
 
 describe('View Product Page', () => {
-  it('render product list page', async () => {  
-      render(<ProductList products={mockProducts} />)
+  it('render product list page', async () => {
+    render(<ProductList products={mockProducts} />)
     const headings = screen.getByText("View Products");
     expect(headings).toBeInTheDocument();
   });
 
-  it.each([mockProducts])('verify the added user in gird view', async (mockData: IProduct) => { 
-      
+  it.each([mockProducts])('verify the added user in gird view', async (mockData: IProduct) => {
+
     render(<ProductList products={mockProducts} />)
     const productTitle = screen.getByText(mockData.title as string);
     const productPrice = screen.getByText(mockData.price as number);
@@ -51,7 +50,7 @@ describe('View Product Page', () => {
     render(<ProductCard product={mockProduct} />)
     const button = screen.getByText("View Product");
     fireEvent.click(button);
-    var url = `/products/${mockProduct.id}`; 
+    var url = `/products/${mockProduct.id}`;
   });
 
   it('verify product detail component', () => {

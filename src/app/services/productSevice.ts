@@ -1,23 +1,21 @@
-import {Get, Post} from "./fetchService";
+import { Get, Post } from "./fetchService";
 import * as ApiEndpoint from "../Constants/apiEndPoints";
-import { IProduct,IProductsResponse } from "../products/productInterface";
+import { IProduct } from "../products/productInterface";
 
-
-class ProductDataService 
-{
-    getAll =()=>{
-       return Get<Array<IProduct>>(ApiEndpoint.GET_ALLPRODUCTS);     
+class ProductDataService {
+    getAll = () => {
+        return Get<Array<IProduct>>(ApiEndpoint.GET_ALLPRODUCTS);
     }
 
-    getProduct =(id:number)=>{
-        return Get<IProduct>(ApiEndpoint.GET_PRODUCT+id);
+    getProduct = (id: number) => {
+        return Get<IProduct>(ApiEndpoint.GET_PRODUCT + id);
     }
 
-    create = (data:IProduct)=>{
+    create = (data: IProduct) => {
         return Post<IProduct>(ApiEndpoint.ADD_PRODUCT, data);
     }
-     getProducts=()=> {
+    getProducts = () => {
         return this.getAll().then(res => { return res; });
-    }    
+    }
 }
 export default new ProductDataService;
