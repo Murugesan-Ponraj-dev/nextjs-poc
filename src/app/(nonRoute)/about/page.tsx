@@ -1,8 +1,8 @@
 'use-client'
-import productSevice from "../services/productSevice";
+import productSevice from "../../services/productSevice";
 import React from 'react';
 import { IProduct } from './productInterface';
-import ProductList from '../components/productList';
+import ProductList from "@/app/components/productList";
 
 async function getProducts() {
     const products = await productSevice.getAll();

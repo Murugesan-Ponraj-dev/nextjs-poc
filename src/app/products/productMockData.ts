@@ -20,6 +20,5 @@ function CreateProducts(): IProduct {
  const products: IProduct[] = faker.helpers.multiple(CreateProducts, {
     count: 5
 });
-export const mockProducts: IProductsResponse = { products: products, skip: faker.number.int(),total:faker.number.int(),limit:faker.number.int() };
-
+export const mockProducts: IProduct[] = products; 
 export const mockProduct: IProduct = CreateProducts();
